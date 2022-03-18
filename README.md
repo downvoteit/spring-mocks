@@ -2,7 +2,7 @@
 
 ## Purpose
 
-- Create a simple REST API web application with a Spring Boot and PostgreSQL
+- Create a simple REST API web application with Spring Boot and PostgreSQL
 - Apply JUnit, Mockito and RestAssured in testing 
 
 ## Learning resources
@@ -34,4 +34,3 @@
 --add-opens=java.base/java.io=ALL-UNNAMED
 --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
 ```
-"# spring-mocks" 

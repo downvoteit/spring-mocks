@@ -30,29 +30,29 @@ class ItemRepositoryTest {
   }
 
   @Test
-  void testSave() {
+  void testSaveIntegration() {
     Item item = new Item(null, "A", 1, 2.00);
 
     Assertions.assertEquals(item, itemRepository.save(item));
   }
 
   @Test
-  void testFindById() {
+  void testFindByIdIntegration() {
     Assertions.assertEquals(Optional.empty(), itemRepository.findById(0));
   }
 
   @Test
-  void testFindAll() {
+  void testFindAllIntegration() {
     Assertions.assertEquals(new ArrayList<>(), itemRepository.findAll());
   }
 
   @Test
-  void testExistsById() {
+  void testExistsByIdIntegration() {
     Assertions.assertFalse(itemRepository.existsById(0));
   }
 
   @Test
-  void testDeleteById() {
+  void testDeleteByIdIntegration() {
     Item item = new Item(null, "A", 1, 2.00);
 
     itemRepository.save(item);
@@ -62,7 +62,6 @@ class ItemRepositoryTest {
     Assertions.assertFalse(itemRepository.existsById(item.getId()));
   }
 
-  // clear items table before each test
   class Vacuum {
     void cleanItemsTable() {
       itemRepository.deleteAll();

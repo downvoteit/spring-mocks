@@ -219,7 +219,6 @@ class ItemControllerTest {
         .body(Messages.FAILED.get(), IsAnything.anything());
   }
 
-  // clear items table before each test
   class Vacuum {
     void cleanItemsTable() {
       itemRepository.deleteAll();

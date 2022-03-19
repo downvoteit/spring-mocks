@@ -127,10 +127,10 @@ mvn flyway:migrate -Dflyway.configFiles=flyway.conf
 # Undo last migration (for premium users)
 mvn flyway:undo -Dflyway.configFiles=flyway.conf
 
-# Set a new baseline migration
+# Sets a new baseline migration version as a start for an existing database
 mvn flyway:baseline -Dflyway.configFiles=flyway.conf
 
-# Repair any broken migrations
+# Repair any broken migrations in the metadata table
 mvn flyway:repair -Dflyway.configFiles=flyway.conf
 
 # Undo all migrations

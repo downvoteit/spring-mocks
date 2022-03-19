@@ -10,11 +10,22 @@ spring:
       connection-test-query: select 1
       auto-commit: true
   jpa:
-    generate-ddl: true
     show-sql: true
+    generate-ddl: true
+    open-in-view: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     database: postgresql
+  flyway:
+    enabled: true
+    locations: classpath:db/versions
+    url: jdbc:postgresql://localhost:6001/postgres
+    schemas: postgres
+    user: postgres
+    password: spring_mocks_pg
 server:
   port: 6002

@@ -4,4 +4,5 @@ documents
 target
 
 HELP.md
+README.md
 docker-compose.*

@@ -1,0 +1,6 @@
+.idea
+documents
+target
+
+HELP.md
+docker-compose.*

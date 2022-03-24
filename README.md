@@ -211,15 +211,25 @@ mvn compile jib:build
 mvn package
 ```
 
-### 5. Pull the image from Docker Hub and run it using a "production" profile  
+![Docker Hub](documents/docker_hub_image.jpg)
+
+### 5. Pull the image from Docker Hub and run it using a prod profile  
 
 ```bash
 # Start all services
 docker-compose --file docker-compose.prod.yaml --env-file ./env.prod up -d
+```
 
+![docker-compose up](documents/docker_compose_up.jpg)
+
+```bash
 # Follow webapp logs 
 docker logs --follow spring_mocks_web 
+```
 
+![docker logs](documents/docker_logs_follow.jpg)
+
+```bash
 # Stop all services
 docker-compose --file docker-compose.prod.yaml --env-file ./env.prod down
 ```

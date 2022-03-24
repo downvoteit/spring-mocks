@@ -4,8 +4,8 @@
 
 - Create a simple REST API web application with Spring Boot and PostgreSQL
 - Apply JUnit, Mockito and RestAssured in testing
-- Apply Database migration using Flyway
-- Initiate containerization and upload an image to a remote Docker registry using Google Jib 
+- Apply database migration using Flyway
+- Containerize the application and upload its image to a remote Docker registry using Google Jib 
 
 ## Learning resources
 

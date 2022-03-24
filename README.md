@@ -15,6 +15,11 @@
   - https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html
 - RestAssured docs
   - https://www.javadoc.io/doc/io.rest-assured/rest-assured/latest/io/restassured/RestAssured.html
+- Flyway docs
+  - https://flywaydb.org/documentation
+- Google Jib docs
+  - https://github.com/GoogleContainerTools/jib
+  - https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin#quickstart
 
 ## Necessary program options
 

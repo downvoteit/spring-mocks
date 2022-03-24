@@ -4,6 +4,8 @@
 
 - Create a simple REST API web application with Spring Boot and PostgreSQL
 - Apply JUnit, Mockito and RestAssured in testing
+- Apply Database migration using Flyway
+- Initiate containerization and upload onto a remote Docker registry with Google Jib 
 
 ## Learning resources
 
@@ -53,7 +55,7 @@ spring.profiles.active=test
 --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
 ```
 
-# Flyway migration using Maven
+# Flyway migration with Maven
 
 ## Steps
 
@@ -112,7 +114,7 @@ flyway:
 - More can be found here
   - https://flywaydb.org/documentation/concepts/migrations
 
-### 3. Commands (all commands are idempotent)
+### 3. Test by running commands below (all commands are idempotent)
 
 ```
 # Print applied migrations
@@ -135,4 +137,89 @@ mvn flyway:repair -Dflyway.configFiles=flyway.conf
 
 # Undo all migrations
 mvn flyway:clean -Dflyway.configFiles=flyway.conf
+```
+
+# Google Jib integration with Maven
+
+## Steps
+
+### 1. Create an account on Docker Hub (https://hub.docker.com/) and add the plugin
+
+- Login into Docker Hub on your local machine (follow Docker credential procedures)
+
+```
+<plugin>
+    <groupId>com.google.cloud.tools</groupId>
+    <artifactId>jib-maven-plugin</artifactId>
+    <version>3.2.0</version>
+    <configuration>
+        ...
+    </configuration>
+</plugin>
+```
+
+### 2. Add necessary configurations to the plugin
+
+- Examples configurations are: to/from image, container properties
+
+```
+<configuration>
+  <from>
+    <image>openjdk:11.0.14-jre@sha256:e2e90ec68d3eee5a526603a3160de353a178c80b05926f83d2f77db1d3440826</image>
+  </from>
+  <to>
+    <image>registry.hub.docker.com/downvoteit/${project.artifactId}:${project.version}</image>
+    <tags>
+      <tag>${project.version}</tag>
+    </tags>
+  </to>
+  <container>
+    <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+    <mainClass>com.downvoteit.springmocks.SpringMocksApplication</mainClass>
+    <user>nobody</user>
+    <ports>
+      <port>6002</port>
+    </ports>
+  </container>
+</configuration>
+```
+
+### 3. Add Maven lifecycle/execution options
+
+```
+<executions>
+  <execution>
+    <phase>package</phase>
+    <goals>
+      <goal>build</goal>
+    </goals>
+  </execution>
+</executions>
+```
+
+### 4. Test by running the commands outlined below (or use Intellij Maven UI to trigger)
+
+- Trigger docker build after cleaning, validation and compilation 
+
+```
+mvn compile jib:build
+```
+
+- Trigger docker build after packaging (default configuration, and will run all tests)
+
+```
+mvn package
+```
+
+### 5. Pull the image from Docker Hub and run it using a "production" profile  
+
+```bash
+# Start all services
+docker-compose --file docker-compose.prod.yaml --env-file ./env.prod up -d
+
+# Follow webapp logs 
+docker logs --follow spring_mocks_web 
+
+# Stop all services
+docker-compose --file docker-compose.prod.yaml --env-file ./env.prod down
 ```

@@ -107,6 +107,39 @@
         <artifactId>flyway-maven-plugin</artifactId>
         <version>8.5.4</version>
       </plugin>
+      <!-- https://mvnrepository.com/artifact/com.google.cloud.tools/jib-maven-plugin -->
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <from>
+            <image>openjdk:11.0.14-jre@sha256:e2e90ec68d3eee5a526603a3160de353a178c80b05926f83d2f77db1d3440826</image>
+          </from>
+          <to>
+            <image>registry.hub.docker.com/downvoteit/${project.artifactId}:${project.version}</image>
+            <tags>
+              <tag>${project.version}</tag>
+            </tags>
+          </to>
+          <container>
+            <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+            <mainClass>com.downvoteit.springmocks.SpringMocksApplication</mainClass>
+            <user>nobody</user>
+            <ports>
+              <port>6002</port>
+            </ports>
+          </container>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>build</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 

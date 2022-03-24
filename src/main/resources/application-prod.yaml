@@ -2,9 +2,9 @@ spring:
   main:
     banner-mode: off
   datasource:
-    url: jdbc:postgresql://localhost:6001/postgres
-    username: postgres
-    password: spring_mocks_pg
+    url: ${JDBC_URL}
+    username: ${JDBC_USER}
+    password: ${JDBC_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       connection-test-query: select 1
@@ -23,9 +23,9 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/versions
-    url: jdbc:postgresql://localhost:6001/postgres
-    user: postgres
-    password: spring_mocks_pg
-    schemas: postgres
+    url: ${JDBC_URL}
+    user: ${JDBC_USER}
+    password: ${JDBC_PASSWORD}
+    schemas: ${JDBC_SCHEMA}
 server:
-  port: 6002
+  port: ${SERVER_PORT}

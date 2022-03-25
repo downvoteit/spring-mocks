@@ -17,7 +17,7 @@ services:
     image: downvoteit/spring-mocks:0.0.1-SNAPSHOT
     restart: always
     ports:
-      - ${SERVER_PORT}:${SERVER_PORT}
+      - ${SERVER_PORT}:6002
     environment:
       JAVA_TOOL_OPTIONS: "-Xms64m -Xmx128m -Dspring.profiles.active=prod"
       JDBC_URL: jdbc:postgresql://db:5432/postgres

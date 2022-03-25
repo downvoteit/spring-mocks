@@ -60,6 +60,14 @@ spring.profiles.active=test
 --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
 ```
 
+### API
+
+- GET /items
+- GET /items/{id}
+- POST /items
+- PUT /items
+- DELETE /items/{id}
+
 # Flyway migration with Maven
 
 ## Steps

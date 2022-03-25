@@ -92,7 +92,7 @@ spring.profiles.active=test
 </plugin>
 ```
 
-### 2. Create necessary configuration files, and the version logs for the SQL
+### 3. Create necessary configuration files, and the version logs for the SQL
 
 - Create `flyway.conf` in the root of the project
 
@@ -127,7 +127,7 @@ flyway:
 - More can be found here
   - https://flywaydb.org/documentation/concepts/migrations
 
-### 3. Test by running commands below (all commands are idempotent)
+### 4. Test by running commands below (all commands are idempotent)
 
 ```
 # Print applied migrations

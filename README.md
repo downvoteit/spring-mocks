@@ -120,7 +120,7 @@ flyway:
 
 - Create `db/versions` folder with necessary SQL in resources of the application
 
-- Must SQL migration file names must adhere to `<prefix><version number>__<version descriptor>.sql` format
+- SQL migration file names must adhere to `<prefix><version number>__<version descriptor>.sql` format
 
 - Supported prefixes are `V` for version, `U` for undo, and `R` for repeated migrations
 

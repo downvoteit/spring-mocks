@@ -32,5 +32,6 @@ services:
 
 networks:
   spring_mocks_prod:
+    name: spring_mocks
     driver: bridge
 

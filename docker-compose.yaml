@@ -15,4 +15,5 @@ services:
 
 networks:
   spring_mocks:
+    name: spring_mocks
     driver: bridge

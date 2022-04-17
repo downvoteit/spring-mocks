@@ -2,7 +2,6 @@ package com.downvoteit.springmocks.service;
 
 import com.downvoteit.springmocks.entity.Item;
 import com.downvoteit.springmocks.repository.ItemRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ActiveProfiles("test")
@@ -26,49 +26,37 @@ class ItemServiceTest {
   @InjectMocks ItemService itemService;
 
   @Test
-  void testInsertItem() {
+  void insertItem_mustSaveItem_PositiveTest() {
     when(itemRepository.save(item)).thenReturn(item);
 
-    Assertions.assertEquals(item, itemService.insertItem(item));
+    assertEquals(item, itemService.insertItem(item));
   }
 
   @Test
-  void testUpdateItem() throws ItemServiceException {
+  void updateItem_mustReturnItem_PositiveTest() throws ItemServiceException {
     when(itemRepository.save(item)).thenReturn(item);
 
-    Assertions.assertEquals(item, itemService.updateItem(item));
+    assertEquals(item, itemService.updateItem(item));
   }
 
   @Test
-  void testGetItem() throws ItemServiceException {
+  void getItem_mustReturnItem_PositiveTest() throws ItemServiceException {
     int id = 0;
 
     when(itemRepository.findById(id)).thenReturn(Optional.of(item));
 
-    Assertions.assertEquals(item, itemService.getItem(id));
+    assertEquals(item, itemService.getItem(id));
   }
 
   @Test
-  void testGetItems() {
+  void getItems_mustReturnItemList_PositiveTest() {
     when(itemRepository.findAll()).thenReturn(items);
 
-    Assertions.assertEquals(items, itemService.getItems());
+    assertEquals(items, itemService.getItems());
   }
 
   @Test
-  void testDeleteItemsThrows() {
-    int id = 0;
-
-    when(itemRepository.existsById(id)).thenReturn(false);
-
-    Exception exception =
-        Assertions.assertThrows(ItemServiceException.class, () -> itemService.deleteItem(id));
-
-    Assertions.assertTrue(exception.getMessage().contains("item by id '0' is not found"));
-  }
-
-  @Test
-  void testDeleteItemsDoesNotThrow() throws ItemServiceException {
+  void deleteById_mustReturnVoid_PositiveTest() throws ItemServiceException {
     int id = 0;
 
     when(itemRepository.existsById(0)).thenReturn(true);
@@ -78,6 +66,18 @@ class ItemServiceTest {
 
     verify(itemRepository, times(1)).deleteById(id);
 
-    Assertions.assertEquals(id, itemService.deleteItem(id));
+    assertEquals(id, itemService.deleteItem(id));
+  }
+
+  @Test
+  void deleteItem_mustThrow_NegativeTest() {
+    int id = 0;
+
+    when(itemRepository.existsById(id)).thenReturn(false);
+
+    Exception exception =
+        assertThrows(ItemServiceException.class, () -> itemService.deleteItem(id));
+
+    assertTrue(exception.getMessage().contains("item by id '0' is not found"));
   }
 }

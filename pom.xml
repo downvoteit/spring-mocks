@@ -15,6 +15,11 @@
   <description>Mockingbird</description>
   <properties>
     <java.version>11</java.version>
+    <h2.version>2.1.210</h2.version>
+    <rest.assured.version>4.5.1</rest.assured.version>
+    <flyway.version>8.5.4</flyway.version>
+    <jib.maven.version>3.2.0</jib.maven.version>
+    <server.port>6002</server.port>
   </properties>
   <dependencies>
     <dependency>
@@ -50,39 +55,38 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
-      <version>2.6.4</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <version>2.1.210</version>
+      <version>${h2.version}</version>
       <scope>runtime</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
-      <version>4.5.1</version>
+      <version>${rest.assured.version}</version>
       <scope>test</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured-common -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured-common</artifactId>
-      <version>4.5.1</version>
+      <version>${rest.assured.version}</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured-all -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured-all</artifactId>
-      <version>4.5.1</version>
+      <version>${rest.assured.version}</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
     <dependency>
       <groupId>org.flywaydb</groupId>
       <artifactId>flyway-core</artifactId>
-      <version>8.5.4</version>
+      <version>${flyway.version}</version>
     </dependency>
 
   </dependencies>
@@ -105,13 +109,13 @@
       <plugin>
         <groupId>org.flywaydb</groupId>
         <artifactId>flyway-maven-plugin</artifactId>
-        <version>8.5.4</version>
+        <version>${flyway.version}</version>
       </plugin>
       <!-- https://mvnrepository.com/artifact/com.google.cloud.tools/jib-maven-plugin -->
       <plugin>
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>jib-maven-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>${jib.maven.version}</version>
         <configuration>
           <from>
             <image>openjdk:11.0.14-jre@sha256:e2e90ec68d3eee5a526603a3160de353a178c80b05926f83d2f77db1d3440826</image>
@@ -127,7 +131,7 @@
             <mainClass>com.downvoteit.springmocks.SpringMocksApplication</mainClass>
             <user>nobody</user>
             <ports>
-              <port>6002</port>
+              <port>${server.port}</port>
             </ports>
           </container>
         </configuration>

@@ -76,7 +76,7 @@ class ItemControllerTest {
   }
 
   @Test
-  void testPositiveInsertItemIntegration() throws JSONException {
+  void insertItem_mustInsertItem_PositiveIntegrationTest() throws JSONException {
     Item item = new Item(null, "A", 1, 2.00);
 
     given()
@@ -95,7 +95,7 @@ class ItemControllerTest {
   }
 
   @Test
-  void testPositiveUpdateItemIntegration() throws JSONException {
+  void updateItem_mustUpdateItem_PositiveIntegrationTest() throws JSONException {
     Item item = itemRepository.save(new Item(null, "A", 1, 2.00));
 
     given()
@@ -114,7 +114,7 @@ class ItemControllerTest {
   }
 
   @Test
-  void testNegativeUpdateItemIntegration() throws JSONException {
+  void updateItem_mustReturnError_NegativeIntegrationTest() throws JSONException {
     Item item = new Item();
 
     given()
@@ -131,7 +131,7 @@ class ItemControllerTest {
   }
 
   @Test
-  void testPositiveGetItemIntegration() {
+  void getItem_mustReturnItem_PositiveIntegrationTest() {
     Item item = itemRepository.save(new Item(null, "A", 1, 2.00));
 
     given()
@@ -150,7 +150,7 @@ class ItemControllerTest {
   }
 
   @Test
-  void testNegativeGetItemIntegration() {
+  void getItem_mustReturnError_NegativeIntegrationTest() {
     given()
         .spec(requestSpecification)
         .when()
@@ -165,7 +165,7 @@ class ItemControllerTest {
   }
 
   @Test
-  void testPositiveGetItemsIntegration() {
+  void getItems_mustReturnItem_PositiveIntegrationTest() {
     int size = 5;
     for (int i = 0; i < size; i++) {
       itemRepository.save(new Item(null, "A" + (i + 1), 1, 2.00));
@@ -186,7 +186,7 @@ class ItemControllerTest {
   }
 
   @Test
-  void testPositiveDeleteItemIntegration() {
+  void deleteItem_mustReturnId_PositiveIntegrationTest() {
     Item item = itemRepository.save(new Item(null, "A", 1, 2.00));
 
     given()
@@ -205,7 +205,7 @@ class ItemControllerTest {
   }
 
   @Test
-  void testNegativeDeleteItemIntegration() {
+  void deleteItem_mustReturnError_NegativeIntegrationTest() {
     given()
         .spec(requestSpecification)
         .when()
